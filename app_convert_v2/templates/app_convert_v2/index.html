@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+<body>
+    <div class="main_block">
+        <div class="add_data">
+            <form action="add_data/" method="post">
+                {% csrf_token %}
+                <h3>Для начала работы добавьте курс</h3>
+                <input type="text" name="currency" placeholder="USD">
+                <input type="text" name="course" placeholder="86.3">
+                <input type="submit" value="добавить">
+            </form>
+        </div>
+
+        <div class="search">
+            <form action="search/" method="post">
+                {% csrf_token %}
+                <h3>Поиск курса по времени</h3>
+                <select name="currency">
+                {% for i in currency_db %}
+                    <option>{{i}}</option>
+                {% endfor %}
+                </select>
+                <input type="text" name="time" placeholder="04.05.21 15:23:00">
+                <input type="submit" value="поиск" class="search">
+            </form>
+        </div>
+        <div class="button_link">
+            <button><a href="converter_to/">Конвертировать в валюту</a></button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
